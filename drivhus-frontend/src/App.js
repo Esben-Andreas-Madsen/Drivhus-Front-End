@@ -1,7 +1,9 @@
+import CO2 from "./components/CO2";
+
 function App() {
   return (
-    <div className="App">
-    
+    <div>
+        <CO2 />
     </div>
   );
 }
