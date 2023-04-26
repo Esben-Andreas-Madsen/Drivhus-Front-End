@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import "./CO2.module.css";
+ 
 
 export function TextField({ value }) {
   return (
@@ -7,7 +9,7 @@ export function TextField({ value }) {
 }
 
 export default function CO2() {
-  const [co2Values, setCo2Values] = useState([42, 50, 60]); // Tre forskellige værdier
+  const [co2Values] = useState([42, 50, 60]); // Tre forskellige værdier
   const [currentValueIndex, setCurrentValueIndex] = useState(0); // Index på den aktuelle værdi
 
   useEffect(() => {
@@ -22,7 +24,8 @@ export default function CO2() {
 
   return (
     <div>
-      <h1>CO2</h1>
+      <h1>DRIVHUS</h1>
+      <h2>CO2</h2>
       <TextField value={co2Values[currentValueIndex]} />
     </div>
   );
