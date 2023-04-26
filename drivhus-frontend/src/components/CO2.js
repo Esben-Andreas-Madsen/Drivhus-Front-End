@@ -30,4 +30,3 @@ export default function CO2() {
     </div>
   );
 }
-//hej
