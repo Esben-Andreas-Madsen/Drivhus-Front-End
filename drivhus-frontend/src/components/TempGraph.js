@@ -58,7 +58,6 @@ function TempGraph() {
   return (
     <div>
       <Line data={data} options={options}></Line>
-      <p>xd</p>
     </div>
   );
 }
