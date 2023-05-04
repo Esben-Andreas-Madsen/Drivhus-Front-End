@@ -1,12 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import TempGraph from './components/TempGraph';
-import Root from './routes/Root';
-
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import TempGraph from "./components/TempGraph";
+import Root from "./routes/Root";
 
 import { RouterProvider, createHashRouter } from "react-router-dom";
-
 
 const router = createHashRouter([
   {
@@ -25,7 +23,7 @@ const router = createHashRouter([
   },
 ]);
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <RouterProvider router={router} />
