@@ -1,11 +1,11 @@
+import CO2 from "./components/Home";
 
 function App() {
   return (
-    <div className="App">
+    <div>
+      <CO2 />
     </div>
   );
 }
-
-console.log("hej :)");
 
 export default App;
