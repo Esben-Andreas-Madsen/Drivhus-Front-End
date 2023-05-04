@@ -1,9 +1,9 @@
-import CO2 from "./components/Home";
+import Home from "./components/Home";
 
 function App() {
   return (
     <div>
-      <CO2 />
+      <Home />
     </div>
   );
 }
