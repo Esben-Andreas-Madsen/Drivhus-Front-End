@@ -1,4 +1,4 @@
-import CO2 from "./components/CO2";
+import CO2 from "./components/Home";
 
 function App() {
   return (

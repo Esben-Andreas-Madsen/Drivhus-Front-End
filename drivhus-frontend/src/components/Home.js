@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import "./CO2.module.css";
+import styles from "./Home.module.css";
  
 
 export function TextField({ value }) {
@@ -24,9 +24,24 @@ export default function CO2() {
 
   return (
     <div>
+    <div className={styles.overskrift}>
       <h1>DRIVHUS</h1>
-      <h2>CO2</h2>
-      <TextField value={co2Values[currentValueIndex]} />
+    </div>
+
+    <div className={styles.displayBox1}>
+        <h2>Temperatur</h2>
+        <div className={styles.displayTemp}>{co2Values}</div>
+        </div>
+
+        <div className={styles.displayBox2}>
+        <h2>CO2</h2>
+        <div className={styles.displayCO2}>{co2Values}</div>
+        </div>
+
+        <div className={styles.displayBox3}>
+        <h2>Luftfugtighed</h2>
+        <div className={styles.displayLuft}>{co2Values}</div>
+        </div>
     </div>
   );
 }
