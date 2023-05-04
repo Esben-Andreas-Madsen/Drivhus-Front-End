@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import TempGraph from "../../components/TempGraph";
+import TempGraph from "../../components/tempGraph/TempGraph";
 import "jest-environment-jsdom";
 
 it("renders graph data", () => {
