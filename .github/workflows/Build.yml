@@ -31,3 +31,8 @@ jobs:
     - name: Build
       working-directory: ./drivhus-frontend
       run: npm run build
+      
+    - name: Test
+      working-directory: ./drivhus-frontend
+      run: npm test
+

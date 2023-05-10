@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import TempGraph from "./components/TempGraph";
+import TempGraph from "./components/tempGraph/TempGraph";
 import Root from "./routes/Root";
 
 import { RouterProvider, createHashRouter } from "react-router-dom";

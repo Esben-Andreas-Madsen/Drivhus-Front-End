@@ -20,25 +20,36 @@ ChartJS.register(
 );
 
 function TempGraph() {
+  //Udskiftes senere med API fetch til Cloud
+  const tempData = [2, 5, 7, 2, 4, 6, 8];
+  const tempReadings = tempData.map(function (elem) {
+    return elem;
+  });
+
+  const tempLabelData = [
+    "mandag",
+    "tirsdag",
+    "onsdag",
+    "torsdag",
+    "fredag",
+    "lørdag",
+    "søndag",
+  ];
+  const tempLabels = tempLabelData.map(function (elem) {
+    return elem;
+  });
+
+  /*---------------------------------------------------------------------*/
+
   const data = {
-    labels: [
-      "mandag",
-      "tirsdag",
-      "onsdag",
-      "torsdag",
-      "fredag",
-      "lørdag",
-      "søndag"
-    ],
+    labels: tempLabels,
     datasets: [
       {
         label: "Temp historik",
-        data: [2, 5, 7, 2, 4, 6, 8],
-        backgroundColor: "aqua",
+        data: tempReadings,
+        backgroundColor: "red",
         borderColor: "black",
-        pointBorderColor: "aqua",
-        fill: true,
-        tension: 0.5
+        pointBorderColor: "red",
       },
     ],
   };
@@ -50,7 +61,7 @@ function TempGraph() {
     scales: {
       y: {
         min: -10,
-        max: 35
+        max: 35,
       },
     },
   };
@@ -58,9 +69,9 @@ function TempGraph() {
   return (
     <div>
       <Line data={data} options={options}></Line>
+      <p>xd</p>
     </div>
   );
 }
 
 export default TempGraph;
-
