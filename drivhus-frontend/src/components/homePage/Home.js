@@ -7,7 +7,7 @@ export function TextField({ value }) {
 
 // start værdier når hjemmesiden åbnes
 export default function Values() {
-  const [CO2, setCO2] = useState(`${Math.floor(Math.random() * 100) + 1}%`);
+  const [CO2, setCO2] = useState(`${Math.floor(Math.random() * 1000) + 1}ppm`);
 
   const [humidity, setHumidity] = useState(
     `${Math.floor(Math.random() * 100) + 1}%`
@@ -15,15 +15,15 @@ export default function Values() {
 
   const [temp, setTemp] = useState(`${Math.floor(Math.random() * 100) + 1}°C`);
 
-  // værdierne ændres hvert 5.sekund
+  // værdierne ændres hvert 3.sekund
   useEffect(() => {
     const interval = setInterval(() => {
       const randomHumidity = Math.floor(Math.random() * 100) + 1;
       setHumidity(`${randomHumidity}%`);
       const randomTemp = Math.floor(Math.random() * 100) + 1;
       setTemp(`${randomTemp}°C`);
-      const randomCO2 = Math.floor(Math.random() * 30) + 1;
-      setCO2(`${randomCO2}%`);
+      const randomCO2 = Math.floor(Math.random() * 300) + 1;
+      setCO2(`${randomCO2}ppm`);
     }, 3000);
 
     return () => clearInterval(interval);
