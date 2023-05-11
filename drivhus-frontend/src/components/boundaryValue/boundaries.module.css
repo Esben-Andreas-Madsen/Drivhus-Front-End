@@ -1,0 +1,17 @@
+.boundaryBox1 {
+    padding: 1%;
+    background-color: lightgray;
+    border-radius: 10px;
+    font-size: 18px;
+    font-family: 'Trebuchet MS';
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: max-content;
+    margin: auto;
+    margin-top: 1%;
+}
+
+.boundaryBox1 h2 {
+    align-self: center;
+}

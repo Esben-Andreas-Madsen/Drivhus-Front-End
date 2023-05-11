@@ -12,6 +12,9 @@ export default function Root() {
           <li>
             <Link to="/tempgraph">TempGraph</Link>
           </li>
+          <li>
+            <Link to="/boundaries">Boundaries</Link>
+          </li>
         </ul>
       </div>
       <Outlet />
