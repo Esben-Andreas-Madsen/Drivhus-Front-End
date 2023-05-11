@@ -10,7 +10,7 @@ export default function Boundaries() {
           type="text"
           id="inputField"
           name="inputField"
-          placeholder="EX °45"
+          placeholder="°C"
         ></input>
         <input
           type="button"
@@ -25,17 +25,14 @@ export default function Boundaries() {
           type="text"
           id="inputField"
           name="inputField"
-          placeholder="EX °45"
+          placeholder="°C"
         ></input>
-        <button
+        <input
           type="button"
-          name="submit"
-          value="Submit"
-          class="my-button-class"
-          onclick="updateTemperature"
-        >
-          Opdater
-        </button>
+          id="inputButton"
+          name="inputButton"
+          value={"Opdater"}
+        ></input>
       </div>
     </div>
   );
