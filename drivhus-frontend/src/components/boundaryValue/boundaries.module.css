@@ -1,15 +1,10 @@
-.boundaryBox1{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 80%;
-    height: 200px;
-    margin: 0 20px;
+.boundaryBox1 {
+    padding: 1%;
+    height: 30%;
+    margin: 10px;
     background-color: lightgray;
     border-radius: 10px;
     margin-top: 10px;
-    display: inline-block;
     font-size: 18px;
     font-family: 'Trebuchet MS';
     text-align: center;
