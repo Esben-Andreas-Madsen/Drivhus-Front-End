@@ -1,6 +1,8 @@
+import styles from "./boundaries.module.css";
+
 export default function Boundaries() {
   return (
-    <div>
+    <div className={styles.boundaryBox1}>
       <h2>Temperatur</h2>
       <div>
         <label for="inputField">Maxværdi: </label>
