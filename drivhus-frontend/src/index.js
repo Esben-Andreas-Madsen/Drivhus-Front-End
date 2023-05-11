@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import TempGraph from "./components/tempGraph/TempGraph";
 import Root from "./routes/Root";
-import { Boundaries } from "./components/boundaryValue/Boundaries";
+import  Boundaries  from "./components/boundaryValue/boundaries";
 
 import { RouterProvider, createHashRouter } from "react-router-dom";
 
