@@ -1,3 +1,10 @@
 export default function Boundaries(){
-    <h1>    Hej</h1>
+
+
+    
+return (
+    <h1>Hej</h1>
+
+)
 }
+
