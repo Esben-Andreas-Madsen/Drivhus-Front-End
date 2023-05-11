@@ -5,7 +5,7 @@ export default function CO2Boundaries() {
     <div className={styles.boundaryBox1}>
       <h2>CO2</h2>
       <div>
-        <label for="inputField">Maxværdi: </label>
+        <label for="inputField">Max Value: </label>
         <input
           type="text"
           id="inputField"
@@ -16,11 +16,11 @@ export default function CO2Boundaries() {
           type="button"
           id="inputButton"
           name="inputButton"
-          value={"Opdater"}
+          value={"Update"}
         ></input>
       </div>
       <div>
-        <label for="inputField">Minimumværdi: </label>
+        <label for="inputField">Min Value: </label>
         <input
           type="text"
           id="inputField"
@@ -31,7 +31,7 @@ export default function CO2Boundaries() {
           type="button"
           id="inputButton"
           name="inputButton"
-          value={"Opdater"}
+          value={"Update"}
         ></input>
       </div>
     </div>
