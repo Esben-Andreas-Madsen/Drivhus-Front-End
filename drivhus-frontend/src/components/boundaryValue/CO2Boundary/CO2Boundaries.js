@@ -23,7 +23,7 @@ function checkInput(input, minOrMax) {
         alert("Maximum value cannot be less than or equal to minimum value.");
         return;
       }
-      alert(minOrMax + " humidity updated to: " + input + "ppm");
+      alert(minOrMax + " CO2 level updated to: " + input + "ppm");
     } else {
       alert("Please input a ppm value in the range of 400-800");
     }
