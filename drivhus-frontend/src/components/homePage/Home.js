@@ -10,6 +10,8 @@ export default function Values() {
   const [humidity, setHumidity] = useState("");
   const [temp, setTemp] = useState("");
 
+
+  //Her fetcher vi data fra vores API
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -17,9 +19,9 @@ export default function Values() {
         if (response.ok) {
           const data = await response.json();
           console.log(data); // Tilføjet konsoludskrift af data
+          setTemp(`${data.value.map((reading) => reading.temperature)} °C`);
           setCO2(`${data.value.map((reading) => reading.co2)} ppm`);
           setHumidity(`${data.value.map((reading) => reading.humidity)} %`);
-          setTemp(`${data.value.map((reading) => reading.temperature)} °C`);
         } else {
           console.log("Fejl ved hentning af data fra API'en.");
         }
