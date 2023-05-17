@@ -51,9 +51,9 @@ function HumiGraph() {
       {
         label: "Humi historik",
         data: humiReadings,
-        backgroundColor: "red",
+        backgroundColor: "blue",
         borderColor: "black",
-        pointBorderColor: "red",
+        pointBorderColor: "blue",
       },
     ],
   };
