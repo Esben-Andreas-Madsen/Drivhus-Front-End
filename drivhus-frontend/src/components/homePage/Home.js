@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Home.module.css";
+import backgroundImage from "../../../src/components/homePage/Baggrund.png";
+
 
 export function TextField({ value }) {
   return <input type="text" value={value} readOnly />;
@@ -38,7 +40,7 @@ export default function Values() {
   }, []);
 
   return (
-    <div>
+    <div className={styles.baggrund} style={{ backgroundImage: `url(${backgroundImage})` }}>
       <div className={styles.overskrift}>
         <h1>DRIVHUS</h1>
       </div>
