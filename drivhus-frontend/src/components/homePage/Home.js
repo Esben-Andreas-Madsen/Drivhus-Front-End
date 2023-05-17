@@ -30,9 +30,9 @@ export default function Values() {
       }
     };
 
-    // Hent data ved komponentens start og derefter hvert 3. sekund
+    // Hent data ved komponentens start og derefter hvert 5. minut
     fetchData();
-    const interval = setInterval(fetchData, 3000);
+    const interval = setInterval(fetchData, 300000);
 
     return () => clearInterval(interval);
   }, []);
