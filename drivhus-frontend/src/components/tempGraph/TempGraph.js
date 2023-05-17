@@ -71,7 +71,7 @@ function TempGraph() {
   };
 
   return (
-    <div>
+    <div style={{ width: "90%" }}>
       {tempReadings.length > 0 ? (
         <Line data={data} options={options} />
       ) : (
