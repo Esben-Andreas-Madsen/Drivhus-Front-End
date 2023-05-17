@@ -16,6 +16,9 @@ export default function Root() {
             <Link to="/humigraph">HumiGraph</Link>
           </li>
           <li>
+            <Link to="/co2graph">CO2Graph</Link>
+          </li>
+          <li>
             <Link to="/boundaries">Boundaries</Link>
           </li>
         </ul>
