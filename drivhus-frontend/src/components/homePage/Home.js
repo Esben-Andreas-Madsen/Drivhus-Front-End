@@ -1,36 +1,46 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Home.module.css";
+import backgroundImage from "../../../src/components/homePage/Baggrund.png";
+
 
 export function TextField({ value }) {
   return <input type="text" value={value} readOnly />;
 }
 
-// start værdier når hjemmesiden åbnes
 export default function Values() {
-  const [CO2, setCO2] = useState(`${Math.floor(Math.random() * 1000) + 1}ppm`);
+  const [CO2, setCO2] = useState("");
+  const [humidity, setHumidity] = useState("");
+  const [temp, setTemp] = useState("");
 
-  const [humidity, setHumidity] = useState(
-    `${Math.floor(Math.random() * 100) + 1}%`
-  );
 
-  const [temp, setTemp] = useState(`${Math.floor(Math.random() * 100) + 1}°C`);
-
-  // værdierne ændres hvert 3.sekund
+  //Her fetcher vi data fra vores API
   useEffect(() => {
-    const interval = setInterval(() => {
-      const randomHumidity = Math.floor(Math.random() * 100) + 1;
-      setHumidity(`${randomHumidity}%`);
-      const randomTemp = Math.floor(Math.random() * 100) + 1;
-      setTemp(`${randomTemp}°C`);
-      const randomCO2 = Math.floor(Math.random() * 300) + 1;
-      setCO2(`${randomCO2}ppm`);
-    }, 3000);
+    const fetchData = async () => {
+      try {
+        const response = await fetch("http://70.34.253.20:5001/Reading/GetNewestReading");
+        if (response.ok) {
+          const data = await response.json();
+          console.log(data); // Tilføjet konsoludskrift af data
+          setTemp(`${data.value.map((reading) => reading.temperature)} °C`);
+          setCO2(`${data.value.map((reading) => reading.co2)} ppm`);
+          setHumidity(`${data.value.map((reading) => reading.humidity)} %`);
+        } else {
+          console.log("Fejl ved hentning af data fra API'en.");
+        }
+      } catch (error) {
+        console.log("Fejl ved hentning af data fra API'en:", error);
+      }
+    };
+
+    // Hent data ved komponentens start og derefter hvert 5. minut
+    fetchData();
+    const interval = setInterval(fetchData, 300000);
 
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <div>
+    <div className={styles.baggrund} style={{ backgroundImage: `url(${backgroundImage})` }}>
       <div className={styles.overskrift}>
         <h1>DRIVHUS</h1>
       </div>

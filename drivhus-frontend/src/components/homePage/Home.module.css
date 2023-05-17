@@ -4,6 +4,7 @@
     height: 100px;
     font-size: 40px;
     font-family: 'Trebuchet MS';
+    color: white;
   }
 
  
@@ -84,4 +85,12 @@
     text-align: center;
     margin-top: 30%;
     font-family: 'Trebuchet MS';
+}
+
+.baggrund{
+    height: 770px;
+    margin-top: 10px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center
 }
