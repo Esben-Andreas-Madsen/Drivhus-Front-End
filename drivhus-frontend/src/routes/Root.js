@@ -19,7 +19,7 @@ export default function Root() {
             <Link to="/co2graph">CO2Graph</Link>
           </li>
           <li>
-            <Link to="/boundaries">Boundaries</Link>
+            <Link to="/boundaryvalue">BoundaryValue</Link>
           </li>
         </ul>
       </div>

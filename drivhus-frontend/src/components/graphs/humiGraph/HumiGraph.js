@@ -65,7 +65,7 @@ function HumiGraph() {
     scales: {
       y: {
         min: -10,
-        max: 35,
+        max: 100,
       },
     },
   };
