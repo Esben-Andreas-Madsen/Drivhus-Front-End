@@ -17,24 +17,47 @@ const setup = () => {
   };
 };
 
-it("max: accepts 1 as a valid temp", async () => {
-  const { tempMax, submitBtn } = setup();
-  fireEvent.change(tempMax, { target: { value: "50" } });
+it("max: rejects 1.1 as a valid temp", () => {
+  const { tempMax, submitBtn, response } = setup();
+  fireEvent.change(tempMax, { target: { value: 1.1 } });
   fireEvent.click(submitBtn);
-  expect(
-    screen.getByText(
-      "Temperature must be in the range of 0-100 and in 0.5 - 1 increments, and max &gt; min."
-    )
-  ).toBeInTheDocument();
+  expect(response).toHaveTextContent(
+    "Temperature must be in the range of 0-100 and in 0.5 - 1 increments, and max > min."
+  );
 });
 
-/* it("max: rejects 50.2 as a valid temp", () => {
-  const { maxInput, maxButton } = setup();
-  fireEvent.change(maxInput, { target: { value: "50.2" } });
-  fireEvent.click(maxButton);
-  expect(
-    screen.getByText(
-      "Invalid input, please enter a number in the range of 0-100 and in 0.5 - 1 increments"
-    )
-  ).toBeInTheDocument();
-}); */
+it("max: rejects 101 as a valid temp", () => {
+  const { tempMax, submitBtn, response } = setup();
+  fireEvent.change(tempMax, { target: { value: 101 } });
+  fireEvent.click(submitBtn);
+  expect(response).toHaveTextContent(
+    "Temperature must be in the range of 0-100 and in 0.5 - 1 increments, and max > min."
+  );
+});
+
+it("max: rejects -1 as a valid temp", () => {
+  const { tempMax, submitBtn, response } = setup();
+  fireEvent.change(tempMax, { target: { value: -1 } });
+  fireEvent.click(submitBtn);
+  expect(response).toHaveTextContent(
+    "Temperature must be in the range of 0-100 and in 0.5 - 1 increments, and max > min."
+  );
+});
+
+it("max: rejects 0 as a valid temp", () => {
+  const { tempMax, submitBtn, response } = setup();
+  fireEvent.change(tempMax, { target: { value: 0 } });
+  fireEvent.click(submitBtn);
+  expect(response).toHaveTextContent(
+    "Temperature must be in the range of 0-100 and in 0.5 - 1 increments, and max > min."
+  );
+});
+
+it("max: accepts 100 as a valid temp", () => {
+  const { tempMax, submitBtn, response } = setup();
+  fireEvent.change(tempMax, { target: { value: 100 } });
+  fireEvent.click(submitBtn);
+  expect(response).toHaveTextContent(
+    "Temperature must be in the range of 0-100 and in 0.5 - 1 increments, and max > min."
+  );
+});

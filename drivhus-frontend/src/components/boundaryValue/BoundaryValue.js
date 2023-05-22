@@ -2,17 +2,20 @@ import { useEffect, useState } from "react";
 import styles from "./boundaries.module.css";
 
 function BoundaryValue() {
-  const [tempMax, setTempMax] = useState("");
-  const [tempMin, setTempMin] = useState("");
+  const [tempMax, setTempMax] = useState(0);
+  const [tempMin, setTempMin] = useState(0);
+  const [humiMax, setHumiMax] = useState(0);
+  const [humiMin, setHumiMin] = useState(0);
 
-  const [humiMax, setHumiMax] = useState("");
-  const [humiMin, setHumiMin] = useState("");
-
-  const [CO2Max, setCO2Max] = useState("");
-  const [CO2Min, setCO2Min] = useState("");
+  const [CO2Max, setCO2Max] = useState(0);
+  const [CO2Min, setCO2Min] = useState(0);
 
   useEffect(() => {
-    getConfig();
+    const interval = setInterval(() => {
+      getConfig();
+    }, 1000);
+
+    return () => clearInterval(interval);
   });
 
   async function getConfig() {
@@ -35,8 +38,8 @@ function BoundaryValue() {
       setHumiMin(humiMin);
 
       //Curent CO2 configs
-      const CO2Max = data.value.map((config) => config.maxHumidity);
-      const CO2Min = data.value.map((config) => config.minHumidity);
+      const CO2Max = data.value.map((config) => config.maxCo2);
+      const CO2Min = data.value.map((config) => config.minCo2);
       setCO2Max(CO2Max);
       setCO2Min(CO2Min);
     } catch (err) {
@@ -49,29 +52,29 @@ function BoundaryValue() {
       //Collect all user inputs, if they're empty set them to the previous config value
       let newMaxTemp = document.getElementById("inputMaxTempField").value;
       if (newMaxTemp === "") {
-        newMaxTemp = tempMax;
+        newMaxTemp = tempMax[0];
       }
       let newMinTemp = document.getElementById("inputMinTempField").value;
       if (newMinTemp === "") {
-        newMinTemp = tempMin;
+        newMinTemp = tempMin[0];
       }
 
       let newMaxHumi = document.getElementById("inputMaxHumiField").value;
       if (newMaxHumi === "") {
-        newMaxHumi = humiMax;
+        newMaxHumi = humiMax[0];
       }
       let newMinHumi = document.getElementById("inputMinHumiField").value;
       if (newMinHumi === "") {
-        newMinHumi = humiMin;
+        newMinHumi = humiMin[0];
       }
 
       let newMaxCO2 = document.getElementById("inputMaxCO2Field").value;
       if (newMaxCO2 === "") {
-        newMaxCO2 = CO2Max;
+        newMaxCO2 = CO2Max[0];
       }
       let newMinCO2 = document.getElementById("inputMinCO2Field").value;
       if (newMinCO2 === "") {
-        newMinCO2 = CO2Min;
+        newMinCO2 = CO2Min[0];
       }
 
       //Clear response
@@ -96,6 +99,15 @@ function BoundaryValue() {
           "CO2 in the range of 400-800 and in increments of 1, and max > min. <br>";
       }
 
+      console.log(
+        newMinTemp,
+        newMaxTemp,
+        newMinHumi,
+        newMaxHumi,
+        newMinCO2,
+        newMaxCO2
+      );
+
       //If every validation matches the checks
       if (validatedTemp && validatedHumi && validatedCO2) {
         const url = "http://70.34.253.20:5001/Config/UpdateConfig";
@@ -103,13 +115,13 @@ function BoundaryValue() {
           method: "PUT",
           headers: { "Content-type": "application/json" },
           body: JSON.stringify({
-            plant: "tomat",
-            minTemperature: { newMinTemp },
-            maxTemperature: { newMaxTemp },
-            minHumidity: { newMinHumi },
-            maxHumidity: { newMaxHumi },
-            minCo2: { newMinCO2 },
-            maxCo2: { newMaxCO2 },
+            plant: "tomato",
+            minTemperature: newMinTemp,
+            maxTemperature: newMaxTemp,
+            minHumidity: newMinHumi,
+            maxHumidity: newMaxHumi,
+            minCo2: newMinCO2,
+            maxCo2: newMaxCO2,
           }),
         });
         if (!response.ok) {
@@ -143,7 +155,7 @@ function BoundaryValue() {
     if (!(newMinTemp >= 1)) {
       return false;
     }
-    if (!(newMaxTemp > newMinTemp)) {
+    if (newMaxTemp < newMinTemp) {
       return false;
     }
     if (!(newMaxTemp % 1 !== 0 || newMaxTemp % 1 !== 0.5)) {
@@ -182,7 +194,7 @@ function BoundaryValue() {
   }
 
   function validateCO2(newMaxCO2, newMinCO2) {
-    //Check if both values are between 1-100 and max > min
+    //Check if both values are between 40-80 and max > min
     if (!(newMaxCO2 <= 800)) {
       return false;
     }
