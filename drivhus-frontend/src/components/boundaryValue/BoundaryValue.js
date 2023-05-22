@@ -287,14 +287,13 @@ function BoundaryValue() {
       </div>
 
       <div className={styles.responseMsg}>
-        <p id="responseField" htmlFor="responseField">
-          X
-        </p>
+        <p id="responseField" htmlFor="responseField"></p>
       </div>
 
       <input
         className={styles.submitBtn}
         type="button"
+        htmlFor="submitBtn"
         id="submitBtn"
         value={"Update Configuration"}
         onClick={() => updateConfig()}
