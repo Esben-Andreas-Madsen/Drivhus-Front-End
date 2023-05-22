@@ -73,14 +73,6 @@ function BoundaryValue() {
       if (newMinCO2 === "") {
         newMinCO2 = CO2Min;
       }
-      console.log(
-        newMaxTemp,
-        newMinTemp,
-        newMaxHumi,
-        newMinHumi,
-        newMaxCO2,
-        newMinCO2
-      );
 
       //Clear response
       document.getElementById("responseField").innerHTML = "";
@@ -123,7 +115,8 @@ function BoundaryValue() {
         if (!response.ok) {
           console.log(response);
           document.getElementById("responseField").innerHTML = "Network error";
-        } else {
+        }
+        if (response.ok) {
           document.getElementById("responseField").innerHTML =
             "Successfully updates configurations";
           getConfig();
