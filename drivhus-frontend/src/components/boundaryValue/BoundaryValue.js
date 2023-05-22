@@ -46,15 +46,41 @@ function BoundaryValue() {
 
   async function updateConfig() {
     try {
-      //Collect all user inputs
-      const newMaxTemp = document.getElementById("inputMaxTempField").value;
-      const newMinTemp = document.getElementById("inputMinTempField").value;
+      //Collect all user inputs, if they're empty set them to the previous config value
+      let newMaxTemp = document.getElementById("inputMaxTempField").value;
+      if (newMaxTemp === "") {
+        newMaxTemp = tempMax;
+      }
+      let newMinTemp = document.getElementById("inputMinTempField").value;
+      if (newMinTemp === "") {
+        newMinTemp = tempMin;
+      }
 
-      const newMaxHumi = document.getElementById("inputMaxHumiField").value;
-      const newMinHumi = document.getElementById("inputMinHumiField").value;
+      let newMaxHumi = document.getElementById("inputMaxHumiField").value;
+      if (newMaxHumi === "") {
+        newMaxHumi = humiMax;
+      }
+      let newMinHumi = document.getElementById("inputMinHumiField").value;
+      if (newMinHumi === "") {
+        newMinHumi = humiMin;
+      }
 
-      const newMaxCO2 = document.getElementById("inputMaxCO2Field").value;
-      const newMinCO2 = document.getElementById("inputMinCO2Field").value;
+      let newMaxCO2 = document.getElementById("inputMaxCO2Field").value;
+      if (newMaxCO2 === "") {
+        newMaxCO2 = CO2Max;
+      }
+      let newMinCO2 = document.getElementById("inputMinCO2Field").value;
+      if (newMinCO2 === "") {
+        newMinCO2 = CO2Min;
+      }
+      console.log(
+        newMaxTemp,
+        newMinTemp,
+        newMaxHumi,
+        newMinHumi,
+        newMaxCO2,
+        newMinCO2
+      );
 
       //Clear response
       document.getElementById("responseField").innerHTML = "";
