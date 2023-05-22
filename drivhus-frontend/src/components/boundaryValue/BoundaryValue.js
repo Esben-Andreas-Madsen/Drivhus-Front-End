@@ -11,11 +11,7 @@ function BoundaryValue() {
   const [CO2Min, setCO2Min] = useState(0);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      getConfig();
-    }, 1000);
-
-    return () => clearInterval(interval);
+    getConfig();
   });
 
   async function getConfig() {
@@ -84,19 +80,19 @@ function BoundaryValue() {
       const validatedTemp = validateTemp(newMaxTemp, newMinTemp);
       if (!validatedTemp) {
         document.getElementById("responseField").innerHTML +=
-          "Temperature must be in the range of 0-100 and in 0.5 - 1 increments, and max > min. <br>";
+          "Temperature must be in the range of 0-100 and in 0.5 - 1 increments, and max > min, max != min. <br>";
       }
 
       const validatedHumi = validateHumi(newMaxHumi, newMinHumi);
       if (!validatedHumi) {
         document.getElementById("responseField").innerHTML +=
-          "Humidity must be in the range of 0-100 and in 0.5 - 1 increments, and max > min. <br>";
+          "Humidity must be in the range of 0-100 and in 0.5 - 1 increments, and max > min, max != min. <br>";
       }
 
       const validatedCO2 = validateCO2(newMaxCO2, newMinCO2);
       if (!validatedCO2) {
         document.getElementById("responseField").innerHTML +=
-          "CO2 in the range of 400-800 and in increments of 1, and max > min. <br>";
+          "CO2 in the range of 400-800 and in increments of 1, and max > min, max != min. <br>";
       }
 
       console.log(
@@ -149,7 +145,7 @@ function BoundaryValue() {
     if (!(newMaxTemp >= 1)) {
       return false;
     }
-    if (!(newMinTemp <= 100)) {
+    if (!(newMinTemp <= 99)) {
       return false;
     }
     if (!(newMinTemp >= 1)) {
@@ -158,10 +154,13 @@ function BoundaryValue() {
     if (newMaxTemp < newMinTemp) {
       return false;
     }
-    if (!(newMaxTemp % 1 !== 0 || newMaxTemp % 1 !== 0.5)) {
+    if (newMaxTemp % 1 !== 0 && newMaxTemp % 1 !== 0.5) {
       return false;
     }
-    if (!(newMaxTemp % 1 !== 0 || newMaxTemp % 1 !== 0.5)) {
+    if (newMinTemp % 1 !== 0 && newMinTemp % 1 !== 0.5) {
+      return false;
+    }
+    if (newMaxTemp === newMinTemp) {
       return false;
     }
     return true;
@@ -184,10 +183,13 @@ function BoundaryValue() {
     if (!(newMaxHumi > newMinHumi)) {
       return false;
     }
-    if (!(newMaxHumi % 1 !== 0 || newMaxHumi % 1 !== 0.5)) {
+    if (newMaxHumi % 1 !== 0 && newMaxHumi % 1 !== 0.5) {
       return false;
     }
-    if (!(newMinHumi % 1 !== 0 || newMinHumi % 1 !== 0.5)) {
+    if (newMinHumi % 1 !== 0 && newMinHumi % 1 !== 0.5) {
+      return false;
+    }
+    if (newMaxHumi === newMinHumi) {
       return false;
     }
     return true;
@@ -211,6 +213,9 @@ function BoundaryValue() {
       return false;
     }
     if (newMaxCO2 % 1 !== 0) {
+      return false;
+    }
+    if (newMaxCO2 === newMinCO2) {
       return false;
     }
     return true;
