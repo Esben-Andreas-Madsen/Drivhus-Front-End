@@ -7,7 +7,3 @@ it("renders temp graph", () => {
   const root = ReactDOM.createRoot(document.createElement("div"));
   root.render(<TempGraph />);
 });
-
-it("xd", () => {
-  expect(2 + 2).toBe(4);
-});
