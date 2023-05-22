@@ -6,11 +6,13 @@ const setup = () => {
   const utils = render(<BoundaryValue />);
   const tempMax = screen.getByLabelText("inputMaxTempField");
   const tempMin = screen.getByLabelText("inputMinTempField");
-  const submitBtn = screen.getByLabelText("inputMaxButton");
+  const response = screen.getByLabelText("responseField");
+  const submitBtn = screen.getByLabelText("submitBtn");
   return {
     tempMax,
     tempMin,
     submitBtn,
+    response,
     ...utils,
   };
 };

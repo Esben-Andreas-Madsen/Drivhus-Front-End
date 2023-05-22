@@ -214,6 +214,7 @@ function BoundaryValue() {
             <input
               type="number"
               id="inputMaxTempField"
+              aria-label="inputMaxTempField"
               placeholder={tempMax + "°C"}
               min="0"
               max="100"
@@ -225,6 +226,7 @@ function BoundaryValue() {
             <input
               type="number"
               id="inputMinTempField"
+              aria-label="inputMinTempField"
               placeholder={tempMin + "°C"}
               min="0"
               max="100"
@@ -240,6 +242,7 @@ function BoundaryValue() {
             <input
               type="number"
               id="inputMaxHumiField"
+              aria-label="inputMaxHumiField"
               placeholder={humiMax + "%"}
               min="0"
               max="100"
@@ -251,6 +254,7 @@ function BoundaryValue() {
             <input
               type="number"
               id="inputMinHumiField"
+              aria-label="inputMinHumiField"
               placeholder={humiMin + "%"}
               min="0"
               max="100"
@@ -266,6 +270,7 @@ function BoundaryValue() {
             <input
               type="number"
               id="inputMaxCO2Field"
+              aria-label="inputMaxCO2Field"
               placeholder={CO2Max + "ppm"}
               min="400"
               max="800"
@@ -277,6 +282,7 @@ function BoundaryValue() {
             <input
               type="number"
               id="inputMinCO2Field"
+              aria-label="inputMinCO2Field"
               placeholder={CO2Min + "ppm"}
               min="400"
               max="800"
@@ -287,7 +293,11 @@ function BoundaryValue() {
       </div>
 
       <div className={styles.responseMsg}>
-        <p id="responseField" htmlFor="responseField"></p>
+        <p
+          id="responseField"
+          htmlFor="responseField"
+          aria-label="responseField"
+        ></p>
       </div>
 
       <input
@@ -295,6 +305,7 @@ function BoundaryValue() {
         type="button"
         htmlFor="submitBtn"
         id="submitBtn"
+        aria-label="submitBtn"
         value={"Update Configuration"}
         onClick={() => updateConfig()}
       ></input>
