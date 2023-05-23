@@ -80,19 +80,19 @@ function BoundaryValue() {
       const validatedTemp = validateTemp(newMaxTemp, newMinTemp);
       if (!validatedTemp) {
         document.getElementById("responseField").innerHTML +=
-          "Temperature must be in the range of 0-100 and in 0.5 - 1 increments, and max > min, max != min. <br>";
+          "Temperature must be in the range of 0-100 and in 0.5 - 1 increments, max value must be bigger than min and they can't be the same. <br>";
       }
 
       const validatedHumi = validateHumi(newMaxHumi, newMinHumi);
       if (!validatedHumi) {
         document.getElementById("responseField").innerHTML +=
-          "Humidity must be in the range of 0-100 and in 0.5 - 1 increments, and max > min, max != min. <br>";
+          "Humidity must be in the range of 0-100 and in 0.5 - 1 increments, max value must be bigger than min and they can't be the same. <br>";
       }
 
       const validatedCO2 = validateCO2(newMaxCO2, newMinCO2);
       if (!validatedCO2) {
         document.getElementById("responseField").innerHTML +=
-          "CO2 in the range of 400-800 and in increments of 1, and max > min, max != min. <br>";
+          "CO2 in the range of 400-800 and in increments of 1, and max value must be bigger than min and they can't be the same. <br>";
       }
 
       console.log(
@@ -106,20 +106,36 @@ function BoundaryValue() {
 
       //If every validation matches the checks
       if (validatedTemp && validatedHumi && validatedCO2) {
-        const url = "http://70.34.253.20:5001/Config/UpdateConfig";
+        const params = {
+          Plant: "Tomato",
+          MinTemperature: newMinTemp,
+          MaxTemperature: newMaxTemp,
+          MinHumidity: newMinHumi,
+          MaxHumidity: newMaxHumi,
+          MinCo2: newMinCO2,
+          MaxCo2: newMaxCO2,
+        };
+        const paramsURL = new URLSearchParams(params).toString();
+        console.log(paramsURL);
+        const url = "http://70.34.253.20:5001/Config/UpdateConfig?" + paramsURL;
+        const options = {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            Plant: "Tomato",
+            MinTemperature: newMinTemp,
+            MaxTemperature: newMaxTemp,
+            MinHumidity: newMinHumi,
+            MaxHumidity: newMaxHumi,
+            MinCo2: newMinCO2,
+            MaxCo2: newMaxCO2,
+          }),
+        };
         const response = await fetch(url, {
           method: "PUT",
-          headers: { "Content-type": "application/json" },
-          body: JSON.stringify({
-            plant: "tomato",
-            minTemperature: newMinTemp,
-            maxTemperature: newMaxTemp,
-            minHumidity: newMinHumi,
-            maxHumidity: newMaxHumi,
-            minCo2: newMinCO2,
-            maxCo2: newMaxCO2,
-          }),
-        });
+        }).then((response) => response.json());
         if (!response.ok) {
           console.log(response);
           document.getElementById("responseField").innerHTML = "Network error";
@@ -128,6 +144,14 @@ function BoundaryValue() {
           document.getElementById("responseField").innerHTML =
             "Successfully updates configurations";
           getConfig();
+
+          //Clear fields
+          document.getElementById("inputMaxTempField").innerHTML = "";
+          document.getElementById("inputMinTempField").innerHTML = "";
+          document.getElementById("inputMaxHumiField").innerHTML = "";
+          document.getElementById("inputMinHumiField").innerHTML = "";
+          document.getElementById("inputMaxCO2Field").innerHTML = "";
+          document.getElementById("inputMinCO2Field").innerHTML = "";
         }
       }
     } catch (err) {
@@ -142,7 +166,7 @@ function BoundaryValue() {
     if (!(newMaxTemp <= 100)) {
       return false;
     }
-    if (!(newMaxTemp >= 1)) {
+    if (!(newMaxTemp > 1)) {
       return false;
     }
     if (!(newMinTemp <= 99)) {
@@ -171,7 +195,7 @@ function BoundaryValue() {
     if (!(newMaxHumi <= 100)) {
       return false;
     }
-    if (!(newMaxHumi >= 1)) {
+    if (!(newMaxHumi > 1)) {
       return false;
     }
     if (!(newMinHumi <= 100)) {

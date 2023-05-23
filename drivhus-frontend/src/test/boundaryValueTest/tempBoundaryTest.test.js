@@ -1,7 +1,6 @@
 import React from "react";
-import { render, screen, fireEvent, act } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import BoundaryValue from "../../components/boundaryValue/BoundaryValue";
-import { unmountComponentAtNode } from "react-dom";
 
 function dummyValues() {
   const maxTemp = screen.getByLabelText("inputMaxTempField");
@@ -23,6 +22,9 @@ function dummyValues() {
   fireEvent.change(minCO2, { target: { value: 400 } });
 }
 
+const tempErrorMsg =
+  "Temperature must be in the range of 0-100 and in 0.5 - 1 increments, max value must be bigger than min and they can't be the same.";
+
 it("rejects -1", async () => {
   render(<BoundaryValue />);
   dummyValues();
@@ -31,9 +33,7 @@ it("rejects -1", async () => {
   const response = screen.getByLabelText("responseField");
   fireEvent.change(maxTemp, { target: { value: -1 } });
   fireEvent.click(submitBtn);
-  expect(response).toHaveTextContent(
-    "Temperature must be in the range of 0-100 and in 0.5 - 1 increments, and max > min, max != min."
-  );
+  expect(response).toHaveTextContent(tempErrorMsg);
 });
 
 it("max: rejects 101 as a valid temp", () => {
@@ -44,9 +44,7 @@ it("max: rejects 101 as a valid temp", () => {
   const response = screen.getByLabelText("responseField");
   fireEvent.change(maxTemp, { target: { value: 101 } });
   fireEvent.click(submitBtn);
-  expect(response).toHaveTextContent(
-    "Temperature must be in the range of 0-100 and in 0.5 - 1 increments, and max > min, max != min."
-  );
+  expect(response).toHaveTextContent(tempErrorMsg);
 });
 
 it("max: rejects 100.5 as a valid temp", () => {
@@ -57,9 +55,7 @@ it("max: rejects 100.5 as a valid temp", () => {
   const response = screen.getByLabelText("responseField");
   fireEvent.change(maxTemp, { target: { value: 100.5 } });
   fireEvent.click(submitBtn);
-  expect(response).toHaveTextContent(
-    "Temperature must be in the range of 0-100 and in 0.5 - 1 increments, and max > min, max != min."
-  );
+  expect(response).toHaveTextContent(tempErrorMsg);
 });
 
 it("max: rejects 0 as a valid temp", () => {
@@ -70,9 +66,7 @@ it("max: rejects 0 as a valid temp", () => {
   const response = screen.getByLabelText("responseField");
   fireEvent.change(maxTemp, { target: { value: 0 } });
   fireEvent.click(submitBtn);
-  expect(response).toHaveTextContent(
-    "Temperature must be in the range of 0-100 and in 0.5 - 1 increments, and max > min, max != min."
-  );
+  expect(response).toHaveTextContent(tempErrorMsg);
 });
 
 it("max: rejects 70.7 as a valid temp", () => {
@@ -83,9 +77,7 @@ it("max: rejects 70.7 as a valid temp", () => {
   const response = screen.getByLabelText("responseField");
   fireEvent.change(maxTemp, { target: { value: 70.7 } });
   fireEvent.click(submitBtn);
-  expect(response).toHaveTextContent(
-    "Temperature must be in the range of 0-100 and in 0.5 - 1 increments, and max > min, max != min."
-  );
+  expect(response).toHaveTextContent(tempErrorMsg);
 });
 
 it("max & min: rejects 50 and 50 as a valid temp", () => {
@@ -100,7 +92,5 @@ it("max & min: rejects 50 and 50 as a valid temp", () => {
   fireEvent.change(maxTemp, { target: { value: 50 } });
   fireEvent.change(minTemp, { target: { value: 50 } });
   fireEvent.click(submitBtn);
-  expect(response).toHaveTextContent(
-    "Temperature must be in the range of 0-100 and in 0.5 - 1 increments, and max > min, max != min."
-  );
+  expect(response).toHaveTextContent(tempErrorMsg);
 });
