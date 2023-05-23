@@ -118,7 +118,7 @@ function BoundaryValue() {
         const paramsURL = new URLSearchParams(params).toString();
         console.log(paramsURL);
         const url = "http://70.34.253.20:5001/Config/UpdateConfig?" + paramsURL;
-        const options = {
+        /* const options = {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -132,7 +132,7 @@ function BoundaryValue() {
             MinCo2: newMinCO2,
             MaxCo2: newMaxCO2,
           }),
-        };
+        }; */
         const response = await fetch(url, {
           method: "PUT",
         }).then((response) => response.json());
