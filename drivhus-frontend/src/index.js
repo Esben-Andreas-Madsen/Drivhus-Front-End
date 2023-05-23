@@ -5,9 +5,9 @@ import TempGraph from "./components/graphs/tempGraph/TempGraph";
 import HumiGraph from "./components/graphs/humiGraph/HumiGraph";
 import CO2Graph from "./components/graphs/CO2Graph/CO2Graph";
 import Root from "./routes/Root";
-import Boundaries from "./components/boundaryValue/boundaries";
 
 import { RouterProvider, createHashRouter } from "react-router-dom";
+import BoundaryValue from "./components/boundaryValue/BoundaryValue";
 
 const router = createHashRouter([
   {
@@ -31,8 +31,8 @@ const router = createHashRouter([
         element: <CO2Graph />,
       },
       {
-        path: "/boundaries",
-        element: <Boundaries />,
+        path: "/boundaryvalue",
+        element: <BoundaryValue />,
       },
     ],
   },
