@@ -2,6 +2,7 @@ import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import BoundaryValue from "../../components/boundaryValue/BoundaryValue";
 
+//Metoder der indsætter valide dummy-data som kan overskrides så specifikke felter kan isoleres
 function dummyValues() {
   const maxTemp = screen.getByLabelText("inputMaxTempField");
   fireEvent.change(maxTemp, { target: { value: 100 } });
@@ -22,8 +23,13 @@ function dummyValues() {
   fireEvent.change(minCO2, { target: { value: 400 } });
 }
 
+//Alle fejlvalideringer for min- og max temperatur giver følgende besked
 const tempErrorMsg =
   "Temperature must be in the range of 0-100 and in 0.5 - 1 increments, max value must be bigger than min and they can't be the same.";
+
+/* ---------------------------------------------------------------------------------------------------------*/
+/* -------------------------------------- MAX TEMPERATURE INPUT TESTS --------------------------------------*/
+/* ---------------------------------------------------------------------------------------------------------*/
 
 it("rejects -1", async () => {
   render(<BoundaryValue />);
@@ -79,6 +85,12 @@ it("max: rejects 70.7 as a valid temp", () => {
   fireEvent.click(submitBtn);
   expect(response).toHaveTextContent(tempErrorMsg);
 });
+
+/* ---------------------------------------------------------------------------------------------------------*/
+/* -------------------------------------- MIN TEMPERATURE INPUT TESTS --------------------------------------*/
+/* ---------------------------------------------------------------------------------------------------------*/
+
+/* -------------------------------------- MAX & MIN TEMPERATURE INPUT TESTS --------------------------------------*/
 
 it("max & min: rejects 50 and 50 as a valid temp", () => {
   render(<BoundaryValue />);
