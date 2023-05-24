@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import styles from "./boundaries.module.css";
+import validateTemp from "./ValidateTemp";
+import validateHumi from "./ValidateHumi";
+import validateCO2 from "./ValidateCO2";
 
 function BoundaryValue() {
   const [tempMax, setTempMax] = useState(0);
@@ -159,90 +162,6 @@ function BoundaryValue() {
       document.getElementById("responseField").innerHTML =
         "Something went wrong";
     }
-  }
-
-  function validateTemp(newMaxTemp, newMinTemp) {
-    //Check if both values are between 1-100 and max > min
-    if (!(newMaxTemp <= 100)) {
-      return false;
-    }
-    if (!(newMaxTemp > 1)) {
-      return false;
-    }
-    if (!(newMinTemp <= 99)) {
-      return false;
-    }
-    if (!(newMinTemp >= 1)) {
-      return false;
-    }
-    if (newMaxTemp < newMinTemp) {
-      return false;
-    }
-    if (newMaxTemp % 1 !== 0 && newMaxTemp % 1 !== 0.5) {
-      return false;
-    }
-    if (newMinTemp % 1 !== 0 && newMinTemp % 1 !== 0.5) {
-      return false;
-    }
-    if (newMaxTemp === newMinTemp) {
-      return false;
-    }
-    return true;
-  }
-
-  function validateHumi(newMaxHumi, newMinHumi) {
-    //Check if both values are between 1-100 and max > min
-    if (!(newMaxHumi <= 100)) {
-      return false;
-    }
-    if (!(newMaxHumi > 1)) {
-      return false;
-    }
-    if (!(newMinHumi <= 100)) {
-      return false;
-    }
-    if (!(newMinHumi >= 1)) {
-      return false;
-    }
-    if (!(newMaxHumi > newMinHumi)) {
-      return false;
-    }
-    if (newMaxHumi % 1 !== 0 && newMaxHumi % 1 !== 0.5) {
-      return false;
-    }
-    if (newMinHumi % 1 !== 0 && newMinHumi % 1 !== 0.5) {
-      return false;
-    }
-    if (newMaxHumi === newMinHumi) {
-      return false;
-    }
-    return true;
-  }
-
-  function validateCO2(newMaxCO2, newMinCO2) {
-    //Check if both values are between 40-80 and max > min
-    if (!(newMaxCO2 <= 800)) {
-      return false;
-    }
-    if (!(newMaxCO2 >= 400)) {
-      return false;
-    }
-    if (!(newMinCO2 <= 800)) {
-      return false;
-    }
-    if (!(newMinCO2 >= 400)) {
-      return false;
-    }
-    if (!(newMaxCO2 > newMinCO2)) {
-      return false;
-    }
-    if (newMaxCO2 % 1 !== 0) {
-      return false;
-    }
-    if (newMaxCO2 === newMinCO2) {
-      return false;
-    }
-    return true;
   }
 
   return (
