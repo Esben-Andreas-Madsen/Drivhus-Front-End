@@ -59,3 +59,8 @@ it("acepts max: 70 and min: 50.5", () => {
   const result = validateTemp(70, 50.5);
   expect(result).toBe(true);
 });
+
+it("rejects characters at first check", () => {
+  const result = validateTemp("b", "a");
+  expect(result).toBe(false);
+});
