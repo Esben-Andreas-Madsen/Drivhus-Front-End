@@ -26,14 +26,16 @@ function TempGraph() {
   useEffect(() => {
     const interval = setInterval(() => {
       getReadings();
-    }, 3000);
+    }, 300000);
+
+    getReadings();
 
     return () => clearInterval(interval);
   }, []);
 
   async function getReadings() {
     try {
-      const url = "http://70.34.253.20:5001/Reading/GetReadings";
+      const url = "http://140.82.33.21:5001/Reading/GetReadings";
       const response = await fetch(url);
       const data = await response.json();
       const tempReadings = data.value.map((reading) => reading.temperature);

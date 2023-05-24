@@ -26,20 +26,29 @@ function CO2Graph() {
   useEffect(() => {
     const interval = setInterval(() => {
       getReadings();
-    }, 3000);
+    }, 300000);
+
+    getReadings();
 
     return () => clearInterval(interval);
   }, []);
 
   async function getReadings() {
     try {
-      const url = "http://70.34.253.20:5001/Reading/GetReadings";
+      const url = "http://140.82.33.21:5001/Reading/GetReadings";
       const response = await fetch(url);
       const data = await response.json();
       const tempReadings = data.value.map((reading) => reading.co2);
-      const tempTimeStamps = data.value.map((reading) => reading.timestamp);
+      const tempTimeStamps = data.value.map(
+        (reading) =>
+          reading.timestamp.split("T")[0] +
+          " </br> " +
+          reading.timestamp.substr(11, 5)
+      );
+      console.log(tempTimeStamps);
       setCO2Readings(tempReadings);
       setCO2TimeStamps(tempTimeStamps);
+      console.log(response);
     } catch (err) {
       console.log(err);
     }

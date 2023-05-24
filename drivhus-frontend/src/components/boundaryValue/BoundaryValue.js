@@ -20,7 +20,7 @@ function BoundaryValue() {
   async function getConfig() {
     try {
       //Fetch all current configurations
-      const url = "http://70.34.253.20:5001/Config/GetConfig";
+      const url = "http://140.82.33.21:5001/Config/GetConfig";
       const response = await fetch(url);
       const data = await response.json();
 
@@ -109,19 +109,8 @@ function BoundaryValue() {
 
       //If every validation matches the checks
       if (validatedTemp && validatedHumi && validatedCO2) {
-        const params = {
-          Plant: "Tomato",
-          MinTemperature: newMinTemp,
-          MaxTemperature: newMaxTemp,
-          MinHumidity: newMinHumi,
-          MaxHumidity: newMaxHumi,
-          MinCo2: newMinCO2,
-          MaxCo2: newMaxCO2,
-        };
-        const paramsURL = new URLSearchParams(params).toString();
-        console.log(paramsURL);
-        const url = "http://70.34.253.20:5001/Config/UpdateConfig?" + paramsURL;
-        /* const options = {
+        const url = "http://140.82.33.21:5001/Config/UpdateConfig";
+        const options = {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -135,10 +124,10 @@ function BoundaryValue() {
             MinCo2: newMinCO2,
             MaxCo2: newMaxCO2,
           }),
-        }; */
-        const response = await fetch(url, {
-          method: "PUT",
-        }).then((response) => response.json());
+        };
+        const response = await fetch(url, options).then((response) =>
+          response.json()
+        );
         if (!response.ok) {
           console.log(response);
           document.getElementById("responseField").innerHTML = "Network error";
