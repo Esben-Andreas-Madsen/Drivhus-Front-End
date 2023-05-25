@@ -44,10 +44,10 @@ it("rejects wrong input type reversed", () => {
   expect(validateCO2("b", "a")).toBe(false);
 });
 
-it("rejects double string number input", () => {
+it("accepts double string number input", () => {
   expect(validateCO2("450", "449")).toBe(true);
 });
 
-it("rejects single string number input", () => {
+it("accepts single string number input", () => {
   expect(validateCO2("450", 449)).toBe(true);
 });
