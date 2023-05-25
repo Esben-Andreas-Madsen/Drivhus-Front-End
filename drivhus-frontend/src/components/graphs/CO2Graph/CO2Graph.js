@@ -42,7 +42,7 @@ function CO2Graph() {
       const tempTimeStamps = data.value.map(
         (reading) =>
           reading.timestamp.split("T")[0] +
-          " </br> " +
+          "</br>" +
           reading.timestamp.substr(11, 5)
       );
       console.log(tempTimeStamps);
