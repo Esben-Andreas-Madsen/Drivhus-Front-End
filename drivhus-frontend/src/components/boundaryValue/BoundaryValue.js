@@ -15,30 +15,31 @@ function BoundaryValue() {
 
   useEffect(() => {
     getConfig();
-  });
+  }, []);
 
   async function getConfig() {
     try {
       //Fetch all current configurations
-      const url = "http://140.82.33.21:5001/Config/GetConfig";
+      const url = "http://140.82.33.21:5001/Config/GetConfigByName?name=tomato";
+
       const response = await fetch(url);
       const data = await response.json();
 
       //Current temp configs
-      const tempMax = data.value.map((config) => config.maxTemperature);
-      const tempMin = data.value.map((config) => config.minTemperature);
+      const tempMax = data.map((config) => config.maxTemperature);
+      const tempMin = data.map((config) => config.minTemperature);
       setTempMax(tempMax);
       setTempMin(tempMin);
 
       //Curent humi configs
-      const humiMax = data.value.map((config) => config.maxHumidity);
-      const humiMin = data.value.map((config) => config.minHumidity);
+      const humiMax = data.map((config) => config.maxHumidity);
+      const humiMin = data.map((config) => config.minHumidity);
       setHumiMax(humiMax);
       setHumiMin(humiMin);
 
       //Curent CO2 configs
-      const CO2Max = data.value.map((config) => config.maxCo2);
-      const CO2Min = data.value.map((config) => config.minCo2);
+      const CO2Max = data.map((config) => config.maxCo2);
+      const CO2Min = data.map((config) => config.minCo2);
       setCO2Max(CO2Max);
       setCO2Min(CO2Min);
     } catch (err) {
@@ -116,18 +117,16 @@ function BoundaryValue() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            Plant: "Tomato",
-            MinTemperature: newMinTemp,
-            MaxTemperature: newMaxTemp,
-            MinHumidity: newMinHumi,
-            MaxHumidity: newMaxHumi,
-            MinCo2: newMinCO2,
-            MaxCo2: newMaxCO2,
+            plant: "tomato",
+            minTemperature: newMinTemp,
+            maxTemperature: newMaxTemp,
+            minHumidity: newMinHumi,
+            maxHumidity: newMaxHumi,
+            minCo2: newMinCO2,
+            maxCo2: newMaxCO2,
           }),
         };
-        const response = await fetch(url, options).then((response) =>
-          response.json()
-        );
+        const response = await fetch(url, options);
         if (!response.ok) {
           console.log(response);
           document.getElementById("responseField").innerHTML = "Network error";
@@ -136,18 +135,11 @@ function BoundaryValue() {
           document.getElementById("responseField").innerHTML =
             "Successfully updates configurations";
           getConfig();
-
-          //Clear fields
-          document.getElementById("inputMaxTempField").innerHTML = "";
-          document.getElementById("inputMinTempField").innerHTML = "";
-          document.getElementById("inputMaxHumiField").innerHTML = "";
-          document.getElementById("inputMinHumiField").innerHTML = "";
-          document.getElementById("inputMaxCO2Field").innerHTML = "";
-          document.getElementById("inputMinCO2Field").innerHTML = "";
         }
       }
     } catch (err) {
       console.log(err);
+      console.log("jeff");
       document.getElementById("responseField").innerHTML =
         "Something went wrong";
     }

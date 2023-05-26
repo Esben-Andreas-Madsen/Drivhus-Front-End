@@ -35,11 +35,18 @@ function TempGraph() {
 
   async function getReadings() {
     try {
-      const url = "http://140.82.33.21:5001/Reading/GetReadings";
+      const url =
+        "http://140.82.33.21:5001/Reading/GetReadingsByName?name=Tomato";
       const response = await fetch(url);
       const data = await response.json();
       const tempReadings = data.value.map((reading) => reading.temperature);
-      const tempTimeStamps = data.value.map((reading) => reading.timestamp);
+      const tempTimeStamps = data.value.map(
+        (reading) =>
+          reading.timestamp.split("T")[0] +
+          " : " +
+          reading.timestamp.substr(11, 5)
+      );
+      console.log(data);
       setTempReadings(tempReadings);
       setTempTimeStamps(tempTimeStamps);
     } catch (err) {
@@ -67,13 +74,13 @@ function TempGraph() {
     scales: {
       y: {
         min: -10,
-        max: 35,
+        max: 50,
       },
     },
   };
 
   return (
-    <div style={{ width: "90%" }}>
+    <div style={{ width: "85%" }}>
       {tempReadings.length > 0 ? (
         <Line data={data} options={options} />
       ) : (

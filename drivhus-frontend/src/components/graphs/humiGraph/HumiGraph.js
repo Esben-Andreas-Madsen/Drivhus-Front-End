@@ -35,11 +35,17 @@ function HumiGraph() {
 
   async function getReadings() {
     try {
-      const url = "http://140.82.33.21:5001/Reading/GetReadings";
+      const url =
+        "http://140.82.33.21:5001/Reading/GetReadingsByName?name=Tomato";
       const response = await fetch(url);
       const data = await response.json();
       const tempReadings = data.value.map((reading) => reading.humidity);
-      const tempTimeStamps = data.value.map((reading) => reading.timestamp);
+      const tempTimeStamps = data.value.map(
+        (reading) =>
+          reading.timestamp.split("T")[0] +
+          " : " +
+          reading.timestamp.substr(11, 5)
+      );
       setHumiReadings(tempReadings);
       setTempTimeStamps(tempTimeStamps);
     } catch (err) {
@@ -73,7 +79,7 @@ function HumiGraph() {
   };
 
   return (
-    <div style={{ width: "90%" }}>
+    <div style={{ width: "85%" }}>
       {humiReadings.length > 0 ? (
         <Line data={data} options={options} />
       ) : (

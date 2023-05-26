@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import styles from "./Home.module.css";
 import backgroundImage from "../../../src/components/homePage/Baggrund.png";
 
-
 export function TextField({ value }) {
   return <input type="text" value={value} readOnly />;
 }
@@ -12,18 +11,23 @@ export default function Values() {
   const [humidity, setHumidity] = useState("");
   const [temp, setTemp] = useState("");
 
-
   //Her fetcher vi data fra vores API
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://70.34.253.20:5001/Reading/GetNewestReading");
+        const response = await fetch(
+          "http://140.82.33.21:5001/Config/GetConfigByName?name=tomato"
+        );
         if (response.ok) {
           const data = await response.json();
           console.log(data); // Tilføjet konsoludskrift af data
-          setTemp(`${data.value.map((reading) => reading.temperature)} °C`);
-          setCO2(`${data.value.map((reading) => reading.co2)} ppm`);
-          setHumidity(`${data.value.map((reading) => reading.humidity)} %`);
+          setTemp(
+            `${data[0].readings.map((reading) => reading.temperature)} °C`
+          );
+          setCO2(`${data[0].readings.map((reading) => reading.co2)} ppm`);
+          setHumidity(
+            `${data[0].readings.map((reading) => reading.humidity)} %`
+          );
         } else {
           console.log("Fejl ved hentning af data fra API'en.");
         }
@@ -40,7 +44,10 @@ export default function Values() {
   }, []);
 
   return (
-    <div className={styles.baggrund} style={{ backgroundImage: `url(${backgroundImage})` }}>
+    <div
+      className={styles.baggrund}
+      style={{ backgroundImage: `url(${backgroundImage})` }}
+    >
       <div className={styles.overskrift}>
         <h1>DRIVHUS</h1>
       </div>
