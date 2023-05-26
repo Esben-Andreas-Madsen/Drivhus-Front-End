@@ -3,6 +3,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import BoundaryValue from "../../components/boundaryValue/BoundaryValue";
 
 //Metoder der indsætter valide dummy-data som kan overskrides så specifikke felter kan isoleres
+//Bruges til at isolere værdier så de kan testes
 function dummyValues() {
   const maxTemp = screen.getByLabelText("inputMaxTempField");
   fireEvent.change(maxTemp, { target: { value: 100 } });
