@@ -73,6 +73,13 @@ function TempGraph() {
     },
     scales: {
       y: {
+        title: {
+          display: true,
+          text: "°C",
+          font: {
+            size: 20,
+          },
+        },
         min: -10,
         max: 50,
       },

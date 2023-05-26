@@ -72,6 +72,13 @@ function HumiGraph() {
     },
     scales: {
       y: {
+        title: {
+          display: true,
+          text: "%",
+          font: {
+            size: 20,
+          },
+        },
         min: -10,
         max: 100,
       },

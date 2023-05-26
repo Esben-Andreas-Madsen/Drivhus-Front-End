@@ -74,6 +74,13 @@ function CO2Graph() {
     },
     scales: {
       y: {
+        title: {
+          display: true,
+          text: "ppm",
+          font: {
+            size: 20,
+          },
+        },
         min: 0,
         max: 1000,
       },
