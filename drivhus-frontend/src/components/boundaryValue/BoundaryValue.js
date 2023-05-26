@@ -133,7 +133,7 @@ function BoundaryValue() {
         }
         if (response.ok) {
           document.getElementById("responseField").innerHTML =
-            "Successfully updates configurations";
+            "Successfully updated configurations";
           getConfig();
         }
       }
