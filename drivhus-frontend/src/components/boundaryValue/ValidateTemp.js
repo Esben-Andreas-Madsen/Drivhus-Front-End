@@ -5,7 +5,7 @@ export default function validateTemp(newMaxTemp, newMinTemp) {
     return false;
   }
   if (!(newMaxTemp > 1)) {
-    console.log("max was below 2");
+    console.log("max was below ");
     return false;
   }
   if (!(newMinTemp <= 99)) {
