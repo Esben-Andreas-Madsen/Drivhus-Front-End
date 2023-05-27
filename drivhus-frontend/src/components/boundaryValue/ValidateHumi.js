@@ -12,7 +12,7 @@ export default function validateHumi(newMaxHumi, newMinHumi) {
     console.log("min was above 99");
     return false;
   }
-  if (!(newMinHumi > 0.5)) {
+  if (!(newMinHumi >= 0.5)) {
     console.log("min was below 0.5");
     return false;
   }
