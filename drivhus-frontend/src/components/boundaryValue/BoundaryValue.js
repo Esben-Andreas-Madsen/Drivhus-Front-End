@@ -84,13 +84,13 @@ function BoundaryValue() {
       const validatedTemp = validateTemp(newMaxTemp, newMinTemp);
       if (!validatedTemp) {
         document.getElementById("responseField").innerHTML +=
-          "Temperature must be in the range of 0-100 and in 0.5 - 1 increments, max value must be bigger than min and they can't be the same. <br>";
+          "Temperature must be in the range of 0.5-100 and in 0.5 - 1 increments, max value must be bigger than min and they can't be the same. <br>";
       }
 
       const validatedHumi = validateHumi(newMaxHumi, newMinHumi);
       if (!validatedHumi) {
         document.getElementById("responseField").innerHTML +=
-          "Humidity must be in the range of 0-100 and in 0.5 - 1 increments, max value must be bigger than min and they can't be the same. <br>";
+          "Humidity must be in the range of 0.5-100 and in 0.5 - 1 increments, max value must be bigger than min and they can't be the same. <br>";
       }
 
       const validatedCO2 = validateCO2(newMaxCO2, newMinCO2);
