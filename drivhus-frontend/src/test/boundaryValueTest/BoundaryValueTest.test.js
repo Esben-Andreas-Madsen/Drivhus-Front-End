@@ -9,13 +9,13 @@ function dummyValues() {
   fireEvent.change(maxTemp, { target: { value: 100 } });
 
   const minTemp = screen.getByLabelText("inputMinTempField");
-  fireEvent.change(minTemp, { target: { value: 1 } });
+  fireEvent.change(minTemp, { target: { value: 0.5 } });
 
   const maxHumi = screen.getByLabelText("inputMaxHumiField");
   fireEvent.change(maxHumi, { target: { value: 100 } });
 
   const minHumi = screen.getByLabelText("inputMinHumiField");
-  fireEvent.change(minHumi, { target: { value: 1 } });
+  fireEvent.change(minHumi, { target: { value: 0.5 } });
 
   const maxCO2 = screen.getByLabelText("inputMaxCO2Field");
   fireEvent.change(maxCO2, { target: { value: 800 } });
@@ -26,7 +26,7 @@ function dummyValues() {
 
 //Alle fejlvalideringer for min- og max temperatur giver følgende besked
 const tempErrorMsg =
-  "Temperature must be in the range of 0-100 and in 0.5 - 1 increments, max value must be bigger than min and they can't be the same.";
+  "Temperature must be in the range of 0.5-100 and in 0.5 - 1 increments, max value must be bigger than min and they can't be the same.";
 
 /* ---------------------------------------------------------------------------------------------------------*/
 /* -------------------------------------- MAX TEMPERATURE INPUT TESTS --------------------------------------*/

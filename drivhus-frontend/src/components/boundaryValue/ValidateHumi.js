@@ -1,5 +1,5 @@
 export default function validateHumi(newMaxHumi, newMinHumi) {
-  //Check if both values are between 1-100 and max > min
+  //Check if both values are between 0.5-100 and max > min
   if (!(newMaxHumi <= 100)) {
     console.log("max was above 100");
     return false;
@@ -12,8 +12,8 @@ export default function validateHumi(newMaxHumi, newMinHumi) {
     console.log("min was above 99");
     return false;
   }
-  if (!(newMinHumi >= 1)) {
-    console.log("min was below 1");
+  if (!(newMinHumi > 0.5)) {
+    console.log("min was below 0.5");
     return false;
   }
   if (!(newMaxHumi > newMinHumi)) {
