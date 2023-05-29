@@ -16,18 +16,14 @@ export default function Values() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "http://140.82.33.21:5001/Config/GetConfigByName?name=tomato"
+          "http://140.82.33.21:5001/Reading/GetNewestReading"
         );
         if (response.ok) {
           const data = await response.json();
           console.log(data); // Tilføjet konsoludskrift af data
-          setTemp(
-            `${data[0].readings.map((reading) => reading.temperature)} °C`
-          );
-          setCO2(`${data[0].readings.map((reading) => reading.co2)} ppm`);
-          setHumidity(
-            `${data[0].readings.map((reading) => reading.humidity)} %`
-          );
+          setTemp(`${data.value[0].temperature} °C`);
+          setCO2(`${data.value[0].co2} ppm`);
+          setHumidity(`${data.value[0].humidity} %`);
         } else {
           console.log("Fejl ved hentning af data fra API'en.");
         }
