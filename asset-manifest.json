@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/drivhus-frontend/static/css/main.57b07bcd.css",
+    "main.js": "/drivhus-frontend/static/js/main.b09ee1e3.js",
+    "static/media/Baggrund.png": "/drivhus-frontend/static/media/Baggrund.e8b53aa08bd9e051afa5.png",
+    "index.html": "/drivhus-frontend/index.html",
+    "main.57b07bcd.css.map": "/drivhus-frontend/static/css/main.57b07bcd.css.map",
+    "main.b09ee1e3.js.map": "/drivhus-frontend/static/js/main.b09ee1e3.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.57b07bcd.css",
+    "static/js/main.b09ee1e3.js"
+  ]
+}
