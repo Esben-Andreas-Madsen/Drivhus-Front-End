@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/Drivhus-Front-End/static/css/main.57b07bcd.css",
-    "main.js": "/Drivhus-Front-End/static/js/main.be3a7ae5.js",
+    "main.js": "/Drivhus-Front-End/static/js/main.d1b279f4.js",
     "static/media/Baggrund.png": "/Drivhus-Front-End/static/media/Baggrund.e8b53aa08bd9e051afa5.png",
     "index.html": "/Drivhus-Front-End/index.html",
     "main.57b07bcd.css.map": "/Drivhus-Front-End/static/css/main.57b07bcd.css.map",
-    "main.be3a7ae5.js.map": "/Drivhus-Front-End/static/js/main.be3a7ae5.js.map"
+    "main.d1b279f4.js.map": "/Drivhus-Front-End/static/js/main.d1b279f4.js.map"
   },
   "entrypoints": [
     "static/css/main.57b07bcd.css",
-    "static/js/main.be3a7ae5.js"
+    "static/js/main.d1b279f4.js"
   ]
 }
